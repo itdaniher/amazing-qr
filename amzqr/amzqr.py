@@ -78,9 +78,9 @@ def run(
         from PIL import ImageEnhance, ImageFilter
 
         qr = Image.open(qr_name)
-        qr = qr.convert("RGBA")
+        qr = qr.convert("RGB")
 
-        bg0 = Image.open(bg_name).convert("RGBA")
+        bg0 = Image.open(bg_name).convert("RGB")
         bg0 = ImageEnhance.Contrast(bg0).enhance(contrast)
         bg0 = ImageEnhance.Brightness(bg0).enhance(brightness)
 
@@ -192,7 +192,7 @@ def run(
                 if not save_name
                 else os.path.join(save_dir, save_name)
             )
-            qr.resize((qr.size[0] * 3, qr.size[1] * 3)).convert("RGBA").save(qr_name)
+            qr.resize((qr.size[0] * 3, qr.size[1] * 3)).convert("RGB").save(qr_name)
 
         return ver, level, qr_name
 
