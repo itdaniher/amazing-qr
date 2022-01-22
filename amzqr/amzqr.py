@@ -78,7 +78,7 @@ def run(
         from PIL import ImageEnhance, ImageFilter
 
         qr = Image.open(qr_name)
-        qr = qr.convert("RGBA") if colorized else qr
+        qr = qr.convert("RGBA")
 
         bg0 = Image.open(bg_name).convert("RGBA")
         bg0 = ImageEnhance.Contrast(bg0).enhance(contrast)
@@ -93,7 +93,7 @@ def run(
                 ((qr.size[1] - 24) * int(bg0.size[0] / bg0.size[1]), qr.size[1] - 24)
             )
 
-        bg = bg0 if colorized else bg0.convert("1")
+        bg = bg0
 
         aligs = []
         if ver > 1:
@@ -192,7 +192,7 @@ def run(
                 if not save_name
                 else os.path.join(save_dir, save_name)
             )
-            qr.resize((qr.size[0] * 3, qr.size[1] * 3)).save(qr_name)
+            qr.resize((qr.size[0] * 3, qr.size[1] * 3)).convert("RGBA").save(qr_name)
 
         return ver, level, qr_name
 
