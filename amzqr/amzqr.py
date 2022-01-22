@@ -192,7 +192,10 @@ def run(
                 if not save_name
                 else os.path.join(save_dir, save_name)
             )
-            qr.resize((qr.size[0] * 3, qr.size[1] * 3)).convert("RGBA").save(qr_name)
+            qr = qr.resize((qr.size[0] * 3, qr.size[1] * 3)).convert("RGBA")
+            new_image = Image.new("RGBA", image.size, "WHITE")
+            new_image.paste(qr, mask=qr)
+            new_image.convert("RGB").save(qr_name)
 
         return ver, level, qr_name
 
